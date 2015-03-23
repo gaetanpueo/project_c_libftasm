@@ -1,42 +1,32 @@
-; *************************************************************************** ;
-;                                                                             ;
-;                                                         :::      ::::::::   ;
-;    ft_strcat.s                                        :+:      :+:    :+:   ;
-;                                                     +:+ +:+         +:+     ;
-;    By: gpueo--g <gpueo--g@student.42.fr>          +#+  +:+       +#+        ;
-;                                                 +#+#+#+#+#+   +#+           ;
-;    Created: 2015/10/10 10:00:00 by gpueo--g          #+#    #+#             ;
-;    Updated: 2015/10/10 10:00:00 by gpueo--g         ###   ########.fr       ;
-;                                                                             ;
-; *************************************************************************** ;
-
-global _ft_strcat
-
-extern _ft_strlen
-
 section .text
+	global	_ft_strcat
 
 _ft_strcat:
+	push	rbp
+	mov		rbp, rsp
+	mov		rbx, rdi
+	mov		rcx, rsi
 
-	push rdi
+loop1:
+	cmp		byte [rbx], 0
+	je		loop2 			; jump if equal
+	inc		rbx
+	jmp		loop1			; jump
 
-	call _ft_strlen
+loop2:
+	cmp		byte [rcx], 0
+	je		end2
+	mov		al, byte [rcx]
+	mov		byte [rbx], al
+	inc		rcx
+	inc		rbx
+	jmp		loop2
 
-	add rdi, rax
-
-	mov r8 , rdi
-	mov rdi, rsi
-
-	call _ft_strlen
-
-	mov rcx, rax
-	mov rsi, rdi
-	mov rdi, r8
-
-	repnz movsb
+end2:
+	mov		byte [rbx],0
 
 end:
+	mov		rax, rdi
 
-	mov rax, rdi
-	pop rdi
+	leave
 	ret

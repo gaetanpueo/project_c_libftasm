@@ -1,61 +1,54 @@
-; *************************************************************************** ;
-;                                                                             ;
-;                                                         :::      ::::::::   ;
-;    ft_puts.c                                          :+:      :+:    :+:   ;
-;                                                     +:+ +:+         +:+     ;
-;    By: gpueo--g <gpueo--g@student.42.fr>          +#+  +:+       +#+        ;
-;                                                 +#+#+#+#+#+   +#+           ;
-;    Created: 2015/10/10 10:00:00 by gpueo--g          #+#    #+#             ;
-;    Updated: 2015/10/10 10:00:00 by gpueo--g         ###   ########.fr       ;
-;                                                                             ;
-; *************************************************************************** ;
+%define SYSCALL(n) 0x2000000 | n
 
-%define MACH_SYSCALL(n)	0x2000000 | n
-%define STDOUT			0x01
-%define WRITE			0x04
+section			.data
+	break		db 		10
+	null		db		"(null)", 0
 
-global _ft_puts
-extern _ft_strlen
-
-section .data
-
-	newl db		  0x0A
-	null db "(null)", 0x0A
-
-section .text
+section 		.text
+	global _ft_puts
 
 _ft_puts:
+	push	rbp
+	mov		rbp, rsp
+	cmp		rdi, 0
+	jle		exit
+	cmp		rdi, 0
+	jne		suite
+	mov		rdi, null
 
-	push rdi
+suite:
+	push	rdx
+	push	rbx
+	push	rsi
+	mov		rbx, rdi
 
-	cmp  rdi, 0x00
-	je   nul
-
-	call _ft_strlen
-
-	mov  rsi, rdi
-	mov  rdi, STDOUT
-	mov  rdx, rax
-
-	mov  rax, MACH_SYSCALL(WRITE)
-
+loop:
+	cmp		byte [rbx], 0
+	je		end
+	mov		rdi, 1
+	mov		rsi, rbx
+	mov		rdx, 1
+	mov		rax, SYSCALL(4)
 	syscall
-
-	lea  rsi, [rel newl]
-	mov  rdx, 0x01
-
-	mov  rax, MACH_SYSCALL(WRITE)
-
-	syscall
-	jmp end
-
-nul:
-
-	lea  rsi, [rel null]
-	mov  rdx, 0x07
-
-	mov  rax, MACH_SYSCALL(WRITE)
-
-	syscall
+	inc		rbx
+	jmp		loop
 
 end:
+	pop		rsi
+	pop		rbx
+	pop		rdx
+	mov		rax, 1
+	mov		rax, SYSCALL(4)
+	mov		rdi, 1
+	mov		rsi, 0
+	mov		rdx, 1
+	syscall
+	leave
+	ret
+
+exit:
+	mov		rax, 0
+	mov		rsp, rbp
+	pop		rbp
+	ret
+

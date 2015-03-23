@@ -1,35 +1,22 @@
-; *************************************************************************** ;
-;                                                                             ;
-;                                                         :::      ::::::::   ;
-;    ft_isupper.s                                       :+:      :+:    :+:   ;
-;                                                     +:+ +:+         +:+     ;
-;    By: gpueo--g <gpueo--g@student.42.fr>          +#+  +:+       +#+        ;
-;                                                 +#+#+#+#+#+   +#+           ;
-;    Created: 2015/10/10 10:00:00 by gpueo--g          #+#    #+#             ;
-;    Updated: 2015/10/10 10:00:00 by gpueo--g         ###   ########.fr       ;
-;                                                                             ;
-; *************************************************************************** ;
-
-global _ft_isupper
-
 section .text
+	global _ft_isupper
 
 _ft_isupper:
 
-	cmp rdi, 0x41
-	jl false
+	push		rbp
+	mov			rbp,rsp
 
-	cmp rdi, 0x5A
-	jg false
+	cmp			edi,'A'
+	jl			nope
+	cmp			edi,'Z'
+	jle			good
 
-	jmp true
-
-true:
-
-	mov rax, 0x01
+nope:
+	xor			rax,rax
+	leave
 	ret
 
-false:
-
-	mov rax, 0x00
+good:
+	mov			rax,1
+	leave
 	ret

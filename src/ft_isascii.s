@@ -1,35 +1,24 @@
-; *************************************************************************** ;
-;                                                                             ;
-;                                                         :::      ::::::::   ;
-;    ft_isascii.s                                       :+:      :+:    :+:   ;
-;                                                     +:+ +:+         +:+     ;
-;    By: gpueo--g <gpueo--g@student.42.fr>          +#+  +:+       +#+        ;
-;                                                 +#+#+#+#+#+   +#+           ;
-;    Created: 2015/10/10 10:00:00 by gpueo--g          #+#    #+#             ;
-;    Updated: 2015/10/10 10:00:00 by gpueo--g         ###   ########.fr       ;
-;                                                                             ;
-; *************************************************************************** ;
-
-global _ft_isascii
-
 section .text
+	global _ft_isascii
 
 _ft_isascii:
 
-	cmp rdi, 0x00
-	jl false
+	push		rbp
+	mov			rbp,rsp
 
-	cmp rdi, 0x7F
-	jg false
+	cmp			edi,0
+	jle			nope
+	cmp			edi,127
+	jle			good
 
-	jmp true
+nope:
 
-true:
-
-	mov rax, 0x01
+	xor			rax,rax
+	leave
 	ret
 
-false:
+good:
 
-	mov rax, 0x00
+	mov			rax,1
+	leave
 	ret

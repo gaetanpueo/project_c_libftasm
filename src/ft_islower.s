@@ -1,35 +1,24 @@
-; *************************************************************************** ;
-;                                                                             ;
-;                                                         :::      ::::::::   ;
-;    ft_islower.s                                       :+:      :+:    :+:   ;
-;                                                     +:+ +:+         +:+     ;
-;    By: gpueo--g <gpueo--g@student.42.fr>          +#+  +:+       +#+        ;
-;                                                 +#+#+#+#+#+   +#+           ;
-;    Created: 2015/10/10 10:00:00 by gpueo--g          #+#    #+#             ;
-;    Updated: 2015/10/10 10:00:00 by gpueo--g         ###   ########.fr       ;
-;                                                                             ;
-; *************************************************************************** ;
-
-global _ft_islower
-
 section .text
+	global _ft_islower
 
 _ft_islower:
 
-	cmp rdi, 0x61
-	jl false
+	push		rbp
+	mov			rbp,rsp
 
-	cmp rdi, 0x7A
-	jg false
+	cmp			edi,'a'
+	jl			nope
+	cmp			edi,'z'
+	jle			good
 
-	jmp true
+nope:
 
-true:
-
-	mov rax, 0x01
+	xor			rax,rax
+	leave
 	ret
 
-false:
+good:
 
-	mov rax, 0x00
+	mov			rax,1
+	leave
 	ret

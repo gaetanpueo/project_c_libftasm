@@ -1,35 +1,24 @@
-; *************************************************************************** ;
-;                                                                             ;
-;                                                         :::      ::::::::   ;
-;    ft_isdigit.s                                       :+:      :+:    :+:   ;
-;                                                     +:+ +:+         +:+     ;
-;    By: gpueo--g <gpueo--g@student.42.fr>          +#+  +:+       +#+        ;
-;                                                 +#+#+#+#+#+   +#+           ;
-;    Created: 2015/10/10 10:00:00 by gpueo--g          #+#    #+#             ;
-;    Updated: 2015/10/10 10:00:00 by gpueo--g         ###   ########.fr       ;
-;                                                                             ;
-; *************************************************************************** ;
-
-global _ft_isdigit
-
 section .text
+	global _ft_isdigit
 
 _ft_isdigit:
 
-	cmp rdi, 0x30
-	jl false
+	push		rbp
+	mov			rbp,rsp
 
-	cmp rdi, 0x39
-	jg false
+	cmp			edi,'0'
+	jl			nope
+	cmp			edi,'9'
+	jle			good
 
-	jmp true
+nope:
 
-true:
-
-	mov rax, 0x01
+	xor			rax,rax
+	leave
 	ret
 
-false:
+good:
 
-	mov rax, 0x00
+	mov			rax,1
+	leave
 	ret

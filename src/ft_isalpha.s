@@ -1,42 +1,28 @@
-; *************************************************************************** ;
-;                                                                             ;
-;                                                         :::      ::::::::   ;
-;    ft_isalpha.s                                       :+:      :+:    :+:   ;
-;                                                     +:+ +:+         +:+     ;
-;    By: gpueo--g <gpueo--g@student.42.fr>          +#+  +:+       +#+        ;
-;                                                 +#+#+#+#+#+   +#+           ;
-;    Created: 2015/10/10 10:00:00 by gpueo--g          #+#    #+#             ;
-;    Updated: 2015/10/10 10:00:00 by gpueo--g         ###   ########.fr       ;
-;                                                                             ;
-; *************************************************************************** ;
-
-global _ft_isalpha
-
-extern _ft_isupper
-extern _ft_islower
-
 section .text
+	global _ft_isalpha
 
 _ft_isalpha:
 
-	call _ft_isupper
+	push		rbp
+	mov			rbp,rsp
 
-	cmp rax, 0x01
-	je true
+	cmp			edi,'A'
+	jl			nope
+	cmp			edi,'Z'
+	jle			good
+	cmp			edi,'a'
+	jl			nope
+	cmp			edi,'z'
+	jle			good
 
-	call _ft_islower
+nope:
 
-	cmp rax, 0x01
-	je true
-
-	jmp false
-
-true:
-
-	mov rax, 0x01
+	xor			rax,rax
+	leave
 	ret
 
-false:
+good:
 
-	mov rax, 0x00
+	mov			rax,1
+	leave
 	ret

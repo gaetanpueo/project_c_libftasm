@@ -1,35 +1,24 @@
-; *************************************************************************** ;
-;                                                                             ;
-;                                                         :::      ::::::::   ;
-;    ft_isprint.s                                       :+:      :+:    :+:   ;
-;                                                     +:+ +:+         +:+     ;
-;    By: gpueo--g <gpueo--g@student.42.fr>          +#+  +:+       +#+        ;
-;                                                 +#+#+#+#+#+   +#+           ;
-;    Created: 2015/10/10 10:00:00 by gpueo--g          #+#    #+#             ;
-;    Updated: 2015/10/10 10:00:00 by gpueo--g         ###   ########.fr       ;
-;                                                                             ;
-; *************************************************************************** ;
-
-global _ft_isprint
-
 section .text
+	global _ft_isprint
 
 _ft_isprint:
 
-	cmp rdi, 0x20
-	jl false
+	push		rbp
+	mov			rbp,rsp
 
-	cmp rdi, 0x7E
-	jg false
+	cmp			edi,32
+	jl			nope
+	cmp			edi,126
+	jle			good
 
-	jmp true
+nope:
 
-true:
-
-	mov rax, 0x01
+	xor			rax,rax
+	leave
 	ret
 
-false:
+good:
 
-	mov rax, 0x00
+	mov			rax,1
+	leave
 	ret

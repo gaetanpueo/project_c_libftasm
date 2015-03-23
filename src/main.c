@@ -20,6 +20,7 @@ int		ft_strlen(char *str);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memcpy(void *dst, void *src, size_t n);
 char	*ft_strdup(char *s1);
+void	ft_cat(int fd);
 
 void 	check_alnum(void)
 {

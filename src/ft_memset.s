@@ -1,33 +1,17 @@
-; *************************************************************************** ;
-;                                                                             ;
-;                                                         :::      ::::::::   ;
-;    ft_memset.s                                        :+:      :+:    :+:   ;
-;                                                     +:+ +:+         +:+     ;
-;    By: gpueo--g <gpueo--g@student.42.fr>          +#+  +:+       +#+        ;
-;                                                 +#+#+#+#+#+   +#+           ;
-;    Created: 2015/10/10 10:00:00 by gpueo--g          #+#    #+#             ;
-;    Updated: 2015/10/10 10:00:00 by gpueo--g         ###   ########.fr       ;
-;                                                                             ;
-; *************************************************************************** ;
-
-global _ft_memset
-
-section .text
+section		.text
+	global	_ft_memset
 
 _ft_memset:
+	push		rbp				; push base pointer au dessus de la stack
+	mov			rbp, rsp		; tu met laddresse de rsp dans rbp
 
-	push rdi
+	mov			rbx, rdi
+	mov			rax, rsi
+	mov			rcx, rdx
+	rep	stosb
 
-	mov rcx, rdx
-	mov rax, rsi
-
-	rep stosb
-
-	sub rdi, rdx
-	jmp end
-
-end:
-
-	mov rax, rdi
-	pop rdi
+	mov			rax, rbx
+	mov			rsp, rbp
+	pop			rbp
 	ret
+	;rep stosb

@@ -1,33 +1,16 @@
-; *************************************************************************** ;
-;                                                                             ;
-;                                                         :::      ::::::::   ;
-;    ft_memcpy.s                                        :+:      :+:    :+:   ;
-;                                                     +:+ +:+         +:+     ;
-;    By: gpueo--g <gpueo--g@student.42.fr>          +#+  +:+       +#+        ;
-;                                                 +#+#+#+#+#+   +#+           ;
-;    Created: 2015/10/10 10:00:00 by gpueo--g          #+#    #+#             ;
-;    Updated: 2015/10/10 10:00:00 by gpueo--g         ###   ########.fr       ;
-;                                                                             ;
-; *************************************************************************** ;
-
-global _ft_memcpy
-
 section .text
+	global _ft_memcpy
 
 _ft_memcpy:
 
-	push rdi
+	push		rbp
+	mov			rbp,rsp
+	mov			rax,rdi
 
-	mov rcx, rdx
-	mov rax, rsi
-
+	mov			rcx,rdx
 	rep movsb
-
-	sub rdi, rdx
-	jmp end
 
 end:
 
-	mov rax, rdi
-	pop rdi
+	leave
 	ret
