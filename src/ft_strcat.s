@@ -1,7 +1,7 @@
 ; *************************************************************************** ;
 ;                                                                             ;
 ;                                                         :::      ::::::::   ;
-;    ft_memset.s                                        :+:      :+:    :+:   ;
+;    ft_strcat.s                                        :+:      :+:    :+:   ;
 ;                                                     +:+ +:+         +:+     ;
 ;    By: gpueo--g <gpueo--g@student.42.fr>          +#+  +:+       +#+        ;
 ;                                                 +#+#+#+#+#+   +#+           ;
@@ -10,21 +10,30 @@
 ;                                                                             ;
 ; *************************************************************************** ;
 
-global _ft_memset
+global _ft_strcat
+
+extern _ft_strlen
 
 section .text
 
-_ft_memset:
+_ft_strcat:
 
 	push rdi
 
-	mov rcx, rdx
-	mov rax, rsi
+	call _ft_strlen
 
-	rep stosb
+	add rdi, rax
 
-	sub rdi, rdx
-	jmp end
+	mov r8 , rdi
+	mov rdi, rsi
+
+	call _ft_strlen
+
+	mov rcx, rax
+	mov rsi, rdi
+	mov rdi, r8
+
+	repnz movsb
 
 end:
 

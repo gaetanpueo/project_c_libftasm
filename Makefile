@@ -19,15 +19,20 @@ SRCS	=	ft_bzero.s \
 			ft_cat.s \
 			ft_isalnum.s \
 			ft_isalpha.s \
-			ft_isacii.s \
+			ft_isascii.s \
 			ft_isdigit.s \
 			ft_islower.s \
-			ft_isupper.s
+			ft_isprint.s \
+			ft_isupper.s \
+			ft_memcpy.s \
+			ft_memset.s \
+			ft_puts.s \
+			ft_strcat.s
 _OBJS	=	$(SRCS:.s=.o)
 OBJS	=	$(patsubst %,$(ODIR)%,$(_OBJS))
 
-CC		=	nasm
-FLAGS 	=	-f
+CC		=	~/.brew/Cellar/nasm/2.11.08/bin/nasm
+FLAGS 	=	-f macho64
 
 all: scmsg $(NAME)
 	@echo "\n--------------------------------------------------------------------------------"
@@ -59,7 +64,7 @@ $(NAME): mkdir scemsg $(OBJS)
 	@echo "\n\033[73G\033[37;1m[\033[34mDone !\033[37m]\033[0m"
 
 $(ODIR)%.o: $(SDIR)%.s
-	@$(CC) $(FLAGS) macho64 $< -o $@
+	@$(CC) $(FLAGS) $< -o $@
 	@echo "|\c)"
 
 cleanobj:
