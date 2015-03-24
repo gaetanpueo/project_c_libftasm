@@ -145,6 +145,7 @@ void 	check_puts(void)
 	printf("Test of ft_puts:\n");
 	
 	ft_puts("FT_PUTS CALLED\n\n");
+	ft_puts(NULL);
 }
 
 void 	check_memcpy(void)
@@ -256,7 +257,7 @@ int main(void){
 	   check_isascii();
 	   check_bzero();
 	   check_strlen();
-	   check_strdup();
+	   check_puts();
 	   check_memset();
 	   check_strcat();
 	   check_memcpy();

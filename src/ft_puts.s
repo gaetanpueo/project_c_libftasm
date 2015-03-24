@@ -1,9 +1,5 @@
 %define SYSCALL(n) 0x2000000 | n
 
-section			.data
-	nl			db 		10
-	null		db		"(null)", 0
-
 section 		.text
 	global _ft_puts
 
@@ -14,7 +10,7 @@ _ft_puts:
 	jle		exit
 	cmp		rdi, 0
 	jne		suite
-	mov		rdi, null
+	mov		rdi, "(null)\n"
 
 suite:
 	push	rdx

@@ -1,9 +1,6 @@
 %define BUFF_SIZE 42
 %define SYSCALL(n) 0x2000000 | n
 
-section			.bss
-	buffer		resb		BUFF_SIZE
-
 section			.text
 	global	_ft_cat
 
@@ -13,7 +10,7 @@ _ft_cat:
 
 __read:
 	push		rdi
-	mov			rsi, 42
+	mov			rsi, BUFF_SIZE
 	mov			rdx, BUFF_SIZE
 	mov			rax, SYSCALL(3) ; read
 	syscall
