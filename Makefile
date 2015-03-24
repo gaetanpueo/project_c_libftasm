@@ -35,7 +35,7 @@ SRCS	=	ft_bzero.s \
 _OBJS	=	$(SRCS:.s=.o)
 OBJS	=	$(patsubst %,$(ODIR)%,$(_OBJS))
 
-CC		=	~/.brew/Cellar/nasm/2.11.08/bin/nasm
+CC		=	/usr/local/Cellar/nasm/2.11.08/bin/nasm
 FLAGS 	=	-f macho64
 
 all: scmsg $(NAME)
@@ -91,3 +91,9 @@ fclean: cleanobj
 	@echo "\033[37;1m[\033[34mDone !\033[37m]\033[0m"
 	@echo "\n--------------------------------------------------------------------------------"
 re: fclean all
+
+test: re
+	@gcc -Wl,-no_pie $(NAME) src/main.c
+	@./a.out
+
+.PHONY:		all re fclean clean test
