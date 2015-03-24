@@ -1,6 +1,10 @@
 %define BUFF_SIZE 42
 %define SYSCALL(n) 0x2000000 | n
 
+section			.bss
+	none		resb		BUFF_SIZE ; variable non utilisee pour permettre la compilation
+	buffer		resb		BUFF_SIZE
+
 section			.text
 	global	_ft_cat
 
@@ -10,7 +14,7 @@ _ft_cat:
 
 __read:
 	push		rdi
-	mov			rsi, BUFF_SIZE
+	mov			rsi, buffer
 	mov			rdx, BUFF_SIZE
 	mov			rax, SYSCALL(3) ; read
 	syscall

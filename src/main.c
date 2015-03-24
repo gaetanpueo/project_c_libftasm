@@ -580,7 +580,7 @@ int main(int ac, char *av[])
 	** comparaison avec la fonction de la libc
 	*/
 	ft_puts("\n********** Tests de ft_cat **********\n");
-	fd = open("mytest", O_RDONLY);
+	fd = open("src/mytest", O_RDONLY);
 	ft_cat(fd);
 	close(fd);
 

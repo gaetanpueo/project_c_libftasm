@@ -1,5 +1,10 @@
 %define SYSCALL(n) 0x2000000 | n
 
+section			.data
+	none		db		0 ; variable non utilisee pour permettre la compilation
+	break		db 		10
+	null		db		"(null)", 0
+
 section 		.text
 	global _ft_puts
 
@@ -10,7 +15,7 @@ _ft_puts:
 	jle		exit
 	cmp		rdi, 0
 	jne		suite
-	mov		rdi, "(null)\n"
+	mov		rdi, null
 
 suite:
 	push	rdx
@@ -36,7 +41,7 @@ end:
 	mov		rax, 1
 	mov		rax, SYSCALL(4)
 	mov		rdi, 1
-	mov		rsi, 10
+	mov		rsi, break
 	mov		rdx, 1
 	syscall
 	leave
