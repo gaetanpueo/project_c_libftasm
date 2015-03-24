@@ -1,7 +1,7 @@
 %define SYSCALL(n) 0x2000000 | n
 
 section			.data
-	break		db 		10
+	nl			db 		10
 	null		db		"(null)", 0
 
 section 		.text
@@ -40,7 +40,7 @@ end:
 	mov		rax, 1
 	mov		rax, SYSCALL(4)
 	mov		rdi, 1
-	mov		rsi, 0
+	mov		rsi, nl
 	mov		rdx, 1
 	syscall
 	leave
@@ -51,4 +51,3 @@ exit:
 	mov		rsp, rbp
 	pop		rbp
 	ret
-

@@ -7,7 +7,7 @@ _ft_isascii:
 	mov			rbp,rsp
 
 	cmp			edi,0
-	jle			nope
+	jl			nope
 	cmp			edi,127
 	jle			good
 
