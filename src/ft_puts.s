@@ -40,7 +40,7 @@ end:
 	mov		rax, 1
 	mov		rax, SYSCALL(4)
 	mov		rdi, 1
-	mov		rsi, nl
+	mov		rsi, 10
 	mov		rdx, 1
 	syscall
 	leave

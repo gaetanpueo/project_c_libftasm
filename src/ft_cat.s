@@ -13,7 +13,7 @@ _ft_cat:
 
 __read:
 	push		rdi
-	mov			rsi, buffer
+	mov			rsi, 42
 	mov			rdx, BUFF_SIZE
 	mov			rax, SYSCALL(3) ; read
 	syscall
