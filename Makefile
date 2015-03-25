@@ -35,7 +35,7 @@ SRCS	=	ft_bzero.s \
 _OBJS	=	$(SRCS:.s=.o)
 OBJS	=	$(patsubst %,$(ODIR)%,$(_OBJS))
 
-CC		=	/usr/local/Cellar/nasm/2.11.08/bin/nasm
+CC		=	~/.brew/Cellar/nasm/2.11.08/bin/nasm
 FLAGS 	=	-f macho64
 
 all: scmsg $(NAME)
