@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
 #include <unistd.h>
+#include <ctype.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <strings.h>
@@ -383,80 +383,6 @@ int main(int ac, char *av[])
 	ft_puts("\n********** Tests fonction bonus **********\n");
 
 
-
-	/*
-	** Test strncat :
-	** Test avec 1000000 strings genere aleatoirement et size variable
-	** comparaison avec la fonction de la libc
-	*/
-	/*
-	error = 0;
-	s_cat1 = malloc(sizeof(char) * 50);
-	s_cat2 = malloc(sizeof(char) * 50);
-	test1 = malloc(sizeof(char) * 100);
-	test2 = malloc(sizeof(char) * 100);
-	i = 0;
-	while ( i < 1000000 )
-	{
-		bzero(test1, 100);
-		bzero(test2, 100);
-		bzero(s_cat1, 50);
-		bzero(s_cat2, 50);
-
-		rand_str(s_cat1, 50);
-		size = rand_str(s_cat2, 50);
-		test1 = strcpy(test1, s_cat1);
-		test2 = strcpy(test2, s_cat1);
-
-		test1 = ft_strncat(test1, s_cat2, (size_t)(size + i) % 50);
-		test2 = strncat(test2, s_cat2, (size_t)(size + i) % 50);
-
-		if (strcmp(test1, test2))
-			error++;
-		i++;
-	}
-	if (error)
-		printf("\033[31m%d Error found \033[0m", error);
-	else
-		printf("\033[32mAll OK \033[0m");
-	printf("-----> strncat\n");
-
-	free(s_cat1);
-	free(s_cat2);
-	free(test1);
-	free(test2);
-	*/
-
-	/*
-	** Test memchr :
-	** Test sur une string genere aleatoirement sur tout les caractere possible
-	** comparaison avec la fonction de la libc
-	*/
-	/*
-	char *c;
-	char *d;
-	i = 1;
-	error = 0;
-	while (i < 126)
-	{
-		c = memchr(test1, i, 50);
-		d = ft_memchr(test1, i, 50);
-
-		if ( d != c )
-			error++;
-		else if ( (c != NULL && d != NULL) && strcmp(c, d) )
-			error++;
-
-		i++;
-	}
-	if (error)
-		printf("\033[31m%d Error found \033[0m", error);
-	else
-		printf("\033[32mAll OK \033[0m");
-	printf("-----> memchr\n");
-	*/
-
-
 	/*
 	** Test islower :
 	** Test avec des valeurs variant de -700000 a 25000
@@ -498,89 +424,13 @@ int main(int ac, char *av[])
 	printf("-----> isupper\n");
 
 
-
-	/*
-	** Test strcpy :
-	** Test avec 1000000 strings genere aleatoirement
-	** comparaison avec la fonction de la libc
-	*/
-	/*
-	test1 = malloc(sizeof(char) * 50);
-	test2 = malloc(sizeof(char) * 50);
-	error = 0;
-	i = 0;
-	while ( i < 1000000 )
-	{
-		bzero(test1, 50);
-		bzero(test2, 50);
-
-		size = rand_str(test1, 50);
-		test2 = ft_strcpy(test2, test1);
-		test1 = strcpy(test1, test1);
-
-		if (strcmp(test1, test2))
-			error++;
-
-		i++;
-	}
-	free(test1);
-	free(test2);
-
-	if (error)
-		printf("\033[31m%d Error found \033[0m", error);
-	else
-		printf("\033[32mAll OK \033[0m");
-	printf("-----> strcpy\n");
-	*/
-
-
-	/*
-	** Test strncpy :
-	** Test avec 1000000 strings genere aleatoirement size variable
-	** comparaison avec la fonction de la libc
-	*/
-	/*
-	test1 = malloc(sizeof(char) * 50);
-	test2 = malloc(sizeof(char) * 50);
-	test3 = malloc(sizeof(char) * 50);
-	error = 0;
-	i = 0;
-	while ( i < 1000000 )
-	{
-		bzero(test1, 50);
-		bzero(test2, 50);
-		bzero(test3, 50);
-
-		size = rand_str(test1, 50);
-		test4 = ft_strncpy(test2, test1, size);
-		test5 = strncpy(test3, test1, size);
-
-		if (strcmp(test2, test3))
-			error++;
-
-		if (strcmp(test4, test5))
-			error++;
-
-		i++;
-	}
-	free(test1);
-	free(test2);
-	free(test3);
-	if (error)
-		printf("\033[31m%d Error found \033[0m", error);
-	else
-		printf("\033[32mAll OK \033[0m");
-	printf("-----> strncpy\n");
-	*/
-
-
 	/*
 	** Test cat :
 	** Test avec fichier + file descriptor non existant et sortie standard
 	** comparaison avec la fonction de la libc
 	*/
 	ft_puts("\n********** Tests de ft_cat **********\n");
-	fd = open("src/mytest", O_RDONLY);
+	fd = open("src/test", O_RDONLY);
 	ft_cat(fd);
 	close(fd);
 

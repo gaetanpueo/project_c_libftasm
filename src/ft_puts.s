@@ -12,7 +12,7 @@ _ft_puts:
 	push	rbp
 	mov		rbp, rsp
 	cmp		rdi, 0
-	jle		exit
+	jl		exit
 	cmp		rdi, 0
 	jne		suite
 	mov		rdi, null
