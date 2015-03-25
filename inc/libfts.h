@@ -34,11 +34,5 @@ char	*ft_strdup	(const char *s);
 int		ft_strlen	(char *str);
 int		ft_tolower	(int i);
 int		ft_toupper	(int i);
-/*
-char	*ft_strncat(char *dest, char *str, size_t n);
-void 	*ft_memchr(const void *s, int c, size_t n);
-char	*ft_strcpy(char *dest, const char *src);
-char	*ft_strncpy(char *dest, const char *src, size_t n);
-*/
 
 #endif
