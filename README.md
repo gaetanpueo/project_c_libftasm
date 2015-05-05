@@ -9,6 +9,10 @@ LIBFT ASM - ASM Standard Library
 ### Use the library ###
 
 * The binary file after compilation is libfts.a
+* To compile with this library you need to do this :
+```shell
+gcc [your_source_files] libfts.a
+```
 
 ### Help ###
 
