@@ -1,10 +1,7 @@
 # README #
 
-LIBFT ASM - ASM Standard Library
-
-### Sources ###
-
-* Each function has its own file [.s]
+Project : LIBFT ASM - ASM Standard Library (108/100)
+Status  : Finished
 
 ### Use the library ###
 
