@@ -1,6 +1,6 @@
 # README #
 
-Project : LIBFT ASM - ASM Standard Library (108/100)
+Project : LIBFT ASM - ASM Standard Library (108/100)  
 Status  : Finished
 
 ### Use the library ###
